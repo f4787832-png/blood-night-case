@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Кровавая ночь — кейсы</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #1a0000; color: #ff4444; text-align: center; padding: 40px; }
+    button { font-size: 20px; padding: 15px 30px; background: #660000; color: white; border: none; border-radius: 8px; cursor: pointer; }
+    button:hover { background: #990000; }
+  </style>
+</head>
+<body>
+  <h1>🩸 Кровавая ночь</h1>
+  <p>Нажми кнопку, чтобы открыть кейс и получить NFT.</p>
+  <button id="openCaseBtn">Открыть кейс</button>
+
+  <div id="result" style="margin-top: 30px; font-size: 18px;"></div>
+
+  <script>
+    // NFT из кейса
+    const NFTS = [
+      { id: 1, name: "Bloody Mask", rarity: "common", chance: 50 },
+      { id: 2, name: "Crimson Blade", rarity: "rare", chance: 30 },
+      { id: 3, name: "Scarlet Demon", rarity: "epic", chance: 15 },
+      { id: 4, name: "Blood Moon", rarity: "legendary", chance: 5 }
+    ];
+
+    function getRandomNFT() {
+      let roll = Math.random() * 100;
+      let sum = 0;
+      for (let nft of NFTS) {
+        sum += nft.chance;
+        if (roll <= sum) return nft;
+      }
+    }
+
+    document.getElementById('openCaseBtn').onclick = () => {
+      const nft = getRandomNFT();
+      document.getElementById('result').textContent = `🎰 Выпало: ${nft.name} (${nft.rarity.toUpperCase()})`;
+    }
+  </script>
+</body>
+</html>
